@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>CRUD App</h1>
+
+  <form action="/add" method="POST">
+    <input type="text" name="name" placeholder="Item name" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <button type="submit">Add Item</button>
+  </form>
+
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <%= item.name %> - <%= item.quantity %>
+        <form action="/update/<%= item._id %>" method="POST" style="display:inline;">
+          <input type="number" name="quantity" required>
+          <button>Update</button>
+        </form>
+        <form action="/delete/<%= item._id %>" method="POST" style="display:inline;">
+          <button>Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
